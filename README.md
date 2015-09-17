@@ -20,9 +20,7 @@ The following products / tools are needed to contribute / fork.
 
 **For Development**
 * Microsoft Visual Studio 2015 (at least Community Version). [https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx "https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx")
-
 * Jetbrains ReSharper (optional). [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/ "https://www.jetbrains.com/student/")
-
 * StyleCop Rules (optional, VS 2015 only). [https://johnkoerner.com/csharp/using-analyzers-in-your-projects/] ("https://johnkoerner.com/csharp/using-analyzers-in-your-projects/") 
 
 
