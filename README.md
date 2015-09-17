@@ -19,9 +19,11 @@ With focus on the .NET-Stack, at least the following technologies should be adde
 The following products / tools are needed to contribute / fork.
 
 **For Development**
-* MS Visual Studio (at least Community Version). [http://www.visualstudio.com/en-us/news/vs2013-community-vs.aspx](http://www.visualstudio.com/en-us/news/vs2013-community-vs.aspx "http://www.visualstudio.com/en-us/news/vs2013-community-vs.aspx")
-* ReSharper (optional). [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/ "https://www.jetbrains.com/student/")
-* StyleCop 4.7 (optional). [http://stylecop.codeplex.com/releases/view/79972](http://stylecop.codeplex.com/releases/view/79972 "http://stylecop.codeplex.com/releases/view/79972") 
+* Microsoft Visual Studio 2015 (at least Community Version). [https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx "https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx")
+
+* Jetbrains ReSharper (optional). [https://www.jetbrains.com/student/](https://www.jetbrains.com/student/ "https://www.jetbrains.com/student/")
+
+* StyleCop Rules (optional, VS 2015 only). [https://johnkoerner.com/csharp/using-analyzers-in-your-projects/] ("https://johnkoerner.com/csharp/using-analyzers-in-your-projects/") 
 
 
 **For Pleasure**
