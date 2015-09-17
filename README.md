@@ -11,9 +11,9 @@ With focus on the .NET-Stack, at least the following technologies should be adde
 
 * WPF / XAML UI
 * EntityFramework
-* ASP.NET MVC 5 UI 
+* ASP.NET MVC 5
 * ASP.NET WebApi
-* ASP.Net SignalR
+* ASP.NET SignalR
 
 ## Contribution
 The following products / tools are needed to contribute / fork.
