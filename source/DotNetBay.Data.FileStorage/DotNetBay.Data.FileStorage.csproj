@@ -46,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataRootElement.cs" />
+    <Compile Include="FileStorageException.cs" />
     <Compile Include="FileSystemMainRepository.cs" />
     <Compile Include="FileSystemRepositoryFactory.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="InMemoryMainRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

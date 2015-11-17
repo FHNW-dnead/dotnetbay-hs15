@@ -112,7 +112,7 @@ namespace DotNetBay.Data.FileStorage
 
                 if (this.loadedData.Auctions.All(a => a.Id != auction.Id))
                 {
-                    throw new ApplicationException("This auction does not exist and cannot be updated!");
+                    throw new FileStorageException("This auction does not exist and cannot be updated!");
                 }
 
                 this.ThrowForInvalidReferences(auction);
@@ -155,13 +155,13 @@ namespace DotNetBay.Data.FileStorage
                 // Does the auction exist?
                 if (this.loadedData.Auctions.All(a => a.Id != bid.Auction.Id))
                 {
-                    throw new ApplicationException("This auction does not exist an cannot be added this way!");
+                    throw new FileStorageException("This auction does not exist an cannot be added this way!");
                 }
 
                 // Does the member exist?
                 if (this.loadedData.Members.All(a => a.UniqueId != bid.Bidder.UniqueId))
                 {
-                    throw new ApplicationException("the bidder does not exist and cannot be added this way!");
+                    throw new FileStorageException("the bidder does not exist and cannot be added this way!");
                 }
 
                 this.ThrowForInvalidReferences(bid);
@@ -328,7 +328,7 @@ namespace DotNetBay.Data.FileStorage
 
             if (referencedElementsToTest.Any(element => !resolvedElementsById.Contains<TNavigationElementType>(element)))
             {
-                throw new Exception("Unable to process objects across contexts!");
+                throw new FileStorageException("Unable to process objects across contexts!");
             }
         }
 
@@ -349,7 +349,7 @@ namespace DotNetBay.Data.FileStorage
 
             if (referencedElement != resolvedElementById)
             {
-                throw new Exception("Unable to process objects across contexts!");
+                throw new FileStorageException("Unable to process objects across contexts!");
             }
         }
 
