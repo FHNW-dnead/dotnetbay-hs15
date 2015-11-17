@@ -292,25 +292,25 @@ namespace DotNetBay.Data.FileStorage
         private void ThrowForInvalidReferences(Auction auction)
         {
             // Check References
-            this.ThrowIfReferenceNotFound(auction, x => x.Bids, this.loadedData.Bids, r => r.Id);
-            this.ThrowIfReferenceNotFound(auction, x => x.ActiveBid, this.loadedData.Bids, r => r.Id);
-            this.ThrowIfReferenceNotFound(auction, x => x.Seller, this.loadedData.Members, r => r.UniqueId);
-            this.ThrowIfReferenceNotFound(auction, x => x.Winner, this.loadedData.Members, r => r.UniqueId);
+            ThrowIfReferenceNotFound(auction, x => x.Bids, this.loadedData.Bids, r => r.Id);
+            ThrowIfReferenceNotFound(auction, x => x.ActiveBid, this.loadedData.Bids, r => r.Id);
+            ThrowIfReferenceNotFound(auction, x => x.Seller, this.loadedData.Members, r => r.UniqueId);
+            ThrowIfReferenceNotFound(auction, x => x.Winner, this.loadedData.Members, r => r.UniqueId);
         }
         
         private void ThrowForInvalidReferences(Bid bid)
         {
-            this.ThrowIfReferenceNotFound(bid, x => x.Auction, this.loadedData.Auctions, r => r.Id);
-            this.ThrowIfReferenceNotFound(bid, x => x.Bidder, this.loadedData.Members, r => r.UniqueId);
+            ThrowIfReferenceNotFound(bid, x => x.Auction, this.loadedData.Auctions, r => r.Id);
+            ThrowIfReferenceNotFound(bid, x => x.Bidder, this.loadedData.Members, r => r.UniqueId);
         }
 
         private void ThrowForInvalidReferences(Member member)
         {
-            this.ThrowIfReferenceNotFound(member, x => x.Auctions, this.loadedData.Auctions, r => r.Id);
-            this.ThrowIfReferenceNotFound(member, x => x.Bids, this.loadedData.Bids, r => r.Id);
+            ThrowIfReferenceNotFound(member, x => x.Auctions, this.loadedData.Auctions, r => r.Id);
+            ThrowIfReferenceNotFound(member, x => x.Bids, this.loadedData.Bids, r => r.Id);
         }
 
-        private void ThrowIfReferenceNotFound<TRootElementType, TNavigationElementType>(
+        private static void ThrowIfReferenceNotFound<TRootElementType, TNavigationElementType>(
             TRootElementType obj,
             Func<TRootElementType, IEnumerable<TNavigationElementType>> navigationAccessor,
             IEnumerable<TNavigationElementType> validInstances,
@@ -332,7 +332,7 @@ namespace DotNetBay.Data.FileStorage
             }
         }
 
-        private void ThrowIfReferenceNotFound<TRootElementType, TNavigationElementType>(
+        private static void ThrowIfReferenceNotFound<TRootElementType, TNavigationElementType>(
             TRootElementType obj,
             Func<TRootElementType, TNavigationElementType> navigationAccessor,
             IEnumerable<TNavigationElementType> validInstances,
