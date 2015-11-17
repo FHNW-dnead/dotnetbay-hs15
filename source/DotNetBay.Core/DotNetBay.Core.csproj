@@ -42,9 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MissingAuctionException.cs" />
+    <Compile Include="AuctionStateException.cs" />
     <Compile Include="Execution\AuctionEventArgs.cs" />
     <Compile Include="Execution\IAuctioneer.cs" />
     <Compile Include="Execution\ProcessedBidEventArgs.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IMemberService.cs" />
     <Compile Include="SimpleMemberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

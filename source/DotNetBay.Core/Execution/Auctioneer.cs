@@ -112,7 +112,7 @@ namespace DotNetBay.Core.Execution
                     {
                         if (auction.ActiveBid != null && bid.ReceivedOnUtc < auction.ActiveBid.ReceivedOnUtc)
                         {
-                            throw new ApplicationException("Cannot handle higher bids which look like coming from history!");
+                            throw new AuctionStateException("Cannot handle higher bids which look like coming from history!");
                         }
 
                         bid.Accepted = true;

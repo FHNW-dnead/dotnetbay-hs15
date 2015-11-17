@@ -54,17 +54,17 @@ namespace DotNetBay.Core
 
             if (auct == null)
             {
-                throw new ArgumentException("This auction does not exist in the store");
+                throw new MissingAuctionException("This auction does not exist in the store");
             }
 
             if (auct.StartDateTimeUtc > DateTime.UtcNow)
             {
-                throw new Exception("The requested auction has not started yet");
+                throw new AuctionStateException("The requested auction has not started yet");
             }
 
             if (auct.EndDateTimeUtc <= DateTime.UtcNow)
             {
-                throw new Exception("The requested auction has already closed");
+                throw new AuctionStateException("The requested auction has already closed");
             }
 
             var bid = new Bid()
