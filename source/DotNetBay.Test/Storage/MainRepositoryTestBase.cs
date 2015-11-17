@@ -193,7 +193,7 @@ namespace DotNetBay.Test.Storage
             Assert.IsNotNull(allAuctionsFromRepo[0].Bids);
 
             Assert.AreEqual(1, allAuctionsFromRepo[0].Bids.Count);
-            Assert.AreEqual(bid, allAuctionsFromRepo[0].Bids[0]);
+            Assert.AreEqual(bid, allAuctionsFromRepo[0].Bids.First());
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
@@ -238,7 +238,7 @@ namespace DotNetBay.Test.Storage
             Assert.IsNotNull(bidderMember.Bids);
 
             Assert.AreEqual(1, bidderMember.Bids.Count);
-            Assert.AreEqual(bid, bidderMember.Bids[0]);
+            Assert.AreEqual(bid, bidderMember.Bids.First());
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]

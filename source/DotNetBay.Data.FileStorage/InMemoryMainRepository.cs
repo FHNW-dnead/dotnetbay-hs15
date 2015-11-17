@@ -297,7 +297,7 @@ namespace DotNetBay.Data.FileStorage
 
         private void ThrowIfReferenceNotFound<TRootElementType, TNavigationElementType>(
             TRootElementType obj,
-            Func<TRootElementType, List<TNavigationElementType>> navigationAccessor,
+            Func<TRootElementType, IEnumerable<TNavigationElementType>> navigationAccessor,
             IEnumerable<TNavigationElementType> validInstances,
             Func<TNavigationElementType, object> identificationAccessor)
         {

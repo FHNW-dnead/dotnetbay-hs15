@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DotNetBay.Model
 {
@@ -18,6 +19,7 @@ namespace DotNetBay.Model
         
         public string Description { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "Keep it as byte-array for compatibility reasons")]
         public byte[] Image { get; set; }
 
         public double CurrentPrice { get; set; }
@@ -41,7 +43,8 @@ namespace DotNetBay.Model
 
         public Member Winner { get; set; }
 
-        public List<Bid> Bids { get; set; }
+        [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "Cannot reomve setter, because needs to be accessible by ORM")]
+        public ICollection<Bid> Bids { get; set; }
 
         public Bid ActiveBid { get; set; }
 
