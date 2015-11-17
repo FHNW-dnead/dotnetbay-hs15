@@ -11,8 +11,11 @@ using NUnit.Framework;
 namespace DotNetBay.Test.Core
 {
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "This is a testclass")]
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Execption")]
     public class AuctionServiceTests
     {
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
         public void GivenAProperService_SavesAValidAuction_ShouldReturnSameFromAuctionList()
         {
@@ -30,6 +33,8 @@ namespace DotNetBay.Test.Core
             Assert.AreEqual(auctionFromService, auction);
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
         public void WithExistingAuction_AfterPlacingABid_TheBidShouldBeAssignedToAuctionAndUser()
         {
@@ -55,6 +60,8 @@ namespace DotNetBay.Test.Core
             Assert.AreEqual(1, bidder.Bids.Count);
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
         [ExpectedException(typeof(ArgumentException))]
         public void WhenAddingAnAuction_WithUnknownMember_RaisesException()
@@ -69,6 +76,8 @@ namespace DotNetBay.Test.Core
             service.Save(auction);
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
         [ExpectedException(typeof(Exception))]
         public void PlacingABid_AuctionHasNotYetStarted_RaisesExecption()
@@ -86,6 +95,8 @@ namespace DotNetBay.Test.Core
             service.PlaceBid(auction, 100);
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
         [ExpectedException(typeof(Exception))]
         public void PlacingABid_AuctionHasExpired_RaisesExecption()

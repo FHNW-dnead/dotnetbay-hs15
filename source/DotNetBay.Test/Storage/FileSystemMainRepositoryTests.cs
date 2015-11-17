@@ -11,6 +11,7 @@ namespace DotNetBay.Test.Storage
 {
     public class FileSystemMainRepositoryTests : MainRepositoryTestBase
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
         [ExpectedException(typeof(Exception))]
         public void GivenEmptyRepo_AddAuctionAndMemberFromOtherInstance_ShouldRaiseException()
