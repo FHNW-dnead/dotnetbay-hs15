@@ -10,26 +10,39 @@ namespace DotNetBay.Cmd
     /// <summary>
     /// Main Entry for program
     /// </summary>
-    public class Program
+    public static class Program
     {
-        public static void Main(string[] args)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "AuctionRunner")]
+        public static void Main()
         {
             Console.WriteLine("DotNetBay Commandline");
 
-            var store = new FileSystemMainRepository("store.json");
-            
-            var auctionService = new AuctionService(store, new SimpleMemberService(store));
-            var auctionRunner = new AuctionRunner(store);
-            
-            Console.WriteLine("Started AuctionRunner");
-            auctionRunner.Start();
+            AuctionRunner auctionRunner = null;
 
-            var allAuctions = auctionService.GetAll();
+            try
+            {
+                var store = new FileSystemMainRepository("store.json");
+                var auctionService = new AuctionService(store, new SimpleMemberService(store));
 
-            Console.WriteLine("Found {0} auctions returned by the service.", allAuctions.Count());
+                auctionRunner = new AuctionRunner(store);
 
-            Console.Write("Press enter to quit");
-            Console.ReadLine();
+                Console.WriteLine("Started AuctionRunner");
+                auctionRunner.Start();
+
+                var allAuctions = auctionService.GetAll();
+
+                Console.WriteLine("Found {0} auctions returned by the service.", allAuctions.Count());
+
+                Console.Write("Press enter to quit");
+                Console.ReadLine();
+            }
+            finally
+            {
+                if (auctionRunner != null)
+                {
+                    auctionRunner.Dispose();
+                }
+            }
 
             Environment.Exit(0);
         }
