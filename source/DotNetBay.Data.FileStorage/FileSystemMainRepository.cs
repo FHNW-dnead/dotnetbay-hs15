@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Globalization;
+using System.IO;
 
 using Newtonsoft.Json;
 
@@ -57,7 +59,7 @@ namespace DotNetBay.Data.FileStorage
             // Reload Images from FS
             foreach (var auction in data.Auctions)
             {
-                auction.Image = this.LoadBinary(string.Format("auction-{0}-image1.jpg", auction.Id));
+                auction.Image = this.LoadBinary(string.Format(CultureInfo.InvariantCulture, "auction-{0}-image1.jpg", auction.Id));
             }
         }
 
@@ -72,7 +74,7 @@ namespace DotNetBay.Data.FileStorage
             // Reload Images from FS
             foreach (var auction in data.Auctions)
             {
-                auction.Image = this.LoadBinary(string.Format("auction-{0}-image1.jpg", auction.Id));
+                auction.Image = this.LoadBinary(string.Format(CultureInfo.InvariantCulture, "auction-{0}-image1.jpg", auction.Id));
             }
         }
 
@@ -84,7 +86,7 @@ namespace DotNetBay.Data.FileStorage
             // Remove byte values from images and save individually
             foreach (var auction in data.Auctions)
             {
-                this.SaveBinary(string.Format("auction-{0}-image1.jpg", auction.Id), auction.Image);
+                this.SaveBinary(string.Format(CultureInfo.InvariantCulture, "auction-{0}-image1.jpg", auction.Id), auction.Image);
                 auction.Image = null;
             }
         }
@@ -93,6 +95,7 @@ namespace DotNetBay.Data.FileStorage
 
         #region Binary-Fields (Save/Loading)
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "We want any exceptions to be hidden when file handling goes wrong")]
         private void SaveBinary(string fileName, byte[] fileContent)
         {
             var fullFileName = Path.Combine(this.binaryDataDirectory, fileName);
@@ -103,7 +106,7 @@ namespace DotNetBay.Data.FileStorage
                 {
                     File.Delete(fullFileName);
                 }
-                catch
+                catch (Exception)
                 {
                     // ignored
                 }
