@@ -80,7 +80,7 @@ namespace DotNetBay.Test.Core
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
         [ExpectedException(typeof(Exception))]
-        public void PlacingABid_AuctionHasNotYetStarted_RaisesExecption()
+        public void PlacingABid_AuctionHasNotYetStarted_RaisesException()
         {
             var repo = new InMemoryMainRepository();
             var simpleMemberService = new SimpleMemberService(repo);
@@ -99,7 +99,7 @@ namespace DotNetBay.Test.Core
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
         [ExpectedException(typeof(Exception))]
-        public void PlacingABid_AuctionHasExpired_RaisesExecption()
+        public void PlacingABid_AuctionHasExpired_RaisesException()
         {
             var repo = new InMemoryMainRepository();
             var simpleMemberService = new SimpleMemberService(repo);

@@ -211,7 +211,7 @@ namespace DotNetBay.Test.Core
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
-        public void AuctionStartedAndEndedInThePast_AuctioneerRuns_DontGetsStarted()
+        public void AuctionStartedAndEndedInThePast_AuctioneerRuns_DoNotGetsStarted()
         {
             var repo = new InMemoryMainRepository();
             var auctioneer = new Auctioneer(repo);

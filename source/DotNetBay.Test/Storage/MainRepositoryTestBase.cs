@@ -49,7 +49,7 @@ namespace DotNetBay.Test.Storage
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
-        public void GivenAnEmptyRepo_AddAuctionWithSeller_AuctionAndMemberAreRepodIndividually()
+        public void GivenAnEmptyRepo_AddAuctionWithSeller_AuctionAndMemberAreInRepoIndividually()
         {
             var myAuction = CreateAnAuction();
             var myMember = CreateAMember();
