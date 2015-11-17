@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 using DotNetBay.Interfaces;
@@ -18,7 +19,7 @@ namespace DotNetBay.Core
 
         public Member GetCurrentMember()
         {
-            var uniqueId = string.Format("{0}@{1}.local", Environment.UserName, Environment.UserDomainName);
+            var uniqueId = string.Format(CultureInfo.CurrentCulture, "{0}@{1}.local", Environment.UserName, Environment.UserDomainName);
             
             var member = this.repository.GetMembers().FirstOrDefault(m => m.UniqueId == uniqueId);
 
@@ -28,7 +29,7 @@ namespace DotNetBay.Core
                     {
                         UniqueId = uniqueId, 
                         DisplayName = Environment.UserName, 
-                        EMail = string.Format("{0}@{1}.local", Environment.UserName, Environment.UserDomainName)
+                        EMail = string.Format(CultureInfo.CurrentCulture, "{0}@{1}.local", Environment.UserName, Environment.UserDomainName)
                     };
 
                 this.repository.Add(member);
