@@ -63,8 +63,8 @@ namespace DotNetBay.Test.Core
 
             var repo = new InMemoryMainRepository();
 
-            var service = new AuctionService(repo, new SimpleMemberService(repo));
             var memberService = new SimpleMemberService(repo);
+            var service = new AuctionService(repo, memberService);
 
             service.Save(auction);
         }
