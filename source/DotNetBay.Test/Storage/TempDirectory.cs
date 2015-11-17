@@ -29,6 +29,7 @@ namespace DotNetBay.Test.Storage
         }
 
         // The bulk of the clean-up code is implemented in Dispose(bool)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

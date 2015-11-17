@@ -36,6 +36,7 @@ namespace DotNetBay.Test.Storage
             Assert.IsNotNull(auctionFromRepo);
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "ANew", Justification = "This is correct")]
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
         public void GivenANewRepository_CanBeSaved_WithNoIssues()
