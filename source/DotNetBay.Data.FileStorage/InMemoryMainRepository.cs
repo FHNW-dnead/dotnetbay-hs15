@@ -13,7 +13,7 @@ namespace DotNetBay.Data.FileStorage
 
         private bool isLoaded;
 
-        private DataRootElement data;
+        private DataRootElement loadedData;
 
         #region Interface Implementation
 
@@ -34,7 +34,7 @@ namespace DotNetBay.Data.FileStorage
                 this.EnsureCompleteLoaded();
 
                 // Add Member (from Seller) if not yet exists
-                var seller = this.data.Members.FirstOrDefault(m => m.UniqueId == auction.Seller.UniqueId);
+                var seller = this.loadedData.Members.FirstOrDefault(m => m.UniqueId == auction.Seller.UniqueId);
 
                 // Create member as seller if not exists
                 if (seller == null)
@@ -42,20 +42,20 @@ namespace DotNetBay.Data.FileStorage
                     // The seller does not yet exist in store
                     seller = auction.Seller;
                     seller.Auctions = new List<Auction>(new[] { auction });
-                    this.data.Members.Add(seller);
+                    this.loadedData.Members.Add(seller);
                 }
 
                 this.ThrowForInvalidReferences(auction);
 
-                if (this.data.Auctions.Any(a => a.Id == auction.Id))
+                if (this.loadedData.Auctions.Any(a => a.Id == auction.Id))
                 {
                     return auction;
                 }
 
-                var maxId = this.data.Auctions.Any() ? this.data.Auctions.Max(a => a.Id) : 0;
+                var maxId = this.loadedData.Auctions.Any() ? this.loadedData.Auctions.Max(a => a.Id) : 0;
                 auction.Id = maxId + 1;
 
-                this.data.Auctions.Add(auction);
+                this.loadedData.Auctions.Add(auction);
 
                 // Add auction to sellers list of auctions
                 if (seller.Auctions.All(a => a.Id != auction.Id))
@@ -73,14 +73,14 @@ namespace DotNetBay.Data.FileStorage
             {
                 this.EnsureCompleteLoaded();
 
-                if (this.data.Members.Any(m => m.UniqueId == member.UniqueId))
+                if (this.loadedData.Members.Any(m => m.UniqueId == member.UniqueId))
                 {
                     return member;
                 }
 
                 this.ThrowForInvalidReferences(member);
 
-                this.data.Members.Add(member);
+                this.loadedData.Members.Add(member);
 
                 if (member.Auctions != null && member.Auctions.Any())
                 {
@@ -110,7 +110,7 @@ namespace DotNetBay.Data.FileStorage
             {
                 this.EnsureCompleteLoaded();
 
-                if (this.data.Auctions.All(a => a.Id != auction.Id))
+                if (this.loadedData.Auctions.All(a => a.Id != auction.Id))
                 {
                     throw new ApplicationException("This auction does not exist and cannot be updated!");
                 }
@@ -121,9 +121,9 @@ namespace DotNetBay.Data.FileStorage
                 {
                     bid.Auction = auction;
 
-                    if (!this.data.Bids.Contains(bid))
+                    if (!this.loadedData.Bids.Contains(bid))
                     {
-                        this.data.Bids.Add(bid);
+                        this.loadedData.Bids.Add(bid);
                     }
                 }
 
@@ -153,32 +153,32 @@ namespace DotNetBay.Data.FileStorage
                 this.EnsureCompleteLoaded();
 
                 // Does the auction exist?
-                if (this.data.Auctions.All(a => a.Id != bid.Auction.Id))
+                if (this.loadedData.Auctions.All(a => a.Id != bid.Auction.Id))
                 {
                     throw new ApplicationException("This auction does not exist an cannot be added this way!");
                 }
 
                 // Does the member exist?
-                if (this.data.Members.All(a => a.UniqueId != bid.Bidder.UniqueId))
+                if (this.loadedData.Members.All(a => a.UniqueId != bid.Bidder.UniqueId))
                 {
                     throw new ApplicationException("the bidder does not exist and cannot be added this way!");
                 }
 
                 this.ThrowForInvalidReferences(bid);
 
-                var maxId = this.data.Bids.Any() ? this.data.Bids.Max(a => a.Id) : 0;
+                var maxId = this.loadedData.Bids.Any() ? this.loadedData.Bids.Max(a => a.Id) : 0;
                 bid.Id = maxId + 1;
                 bid.Accepted = null;
                 bid.TransactionId = Guid.NewGuid();
 
-                this.data.Bids.Add(bid);
+                this.loadedData.Bids.Add(bid);
 
                 // Reference back from auction
-                var auction = this.data.Auctions.FirstOrDefault(a => a.Id == bid.Auction.Id);
+                var auction = this.loadedData.Auctions.FirstOrDefault(a => a.Id == bid.Auction.Id);
                 auction.Bids.Add(bid);
 
                 // Reference back from bidder
-                var bidder = this.data.Members.FirstOrDefault(b => b.UniqueId == bid.Bidder.UniqueId);
+                var bidder = this.loadedData.Members.FirstOrDefault(b => b.UniqueId == bid.Bidder.UniqueId);
                 if (bidder.Bids == null)
                 {
                     bidder.Bids = new List<Bid>(new[] { bid });
@@ -198,7 +198,7 @@ namespace DotNetBay.Data.FileStorage
             {
                 this.EnsureCompleteLoaded();
 
-                return this.data.Bids.FirstOrDefault(b => b.TransactionId == transactionId);
+                return this.loadedData.Bids.FirstOrDefault(b => b.TransactionId == transactionId);
             }
         }
 
@@ -208,7 +208,7 @@ namespace DotNetBay.Data.FileStorage
             {
                 this.EnsureCompleteLoaded();
 
-                return this.data.Auctions.AsQueryable();
+                return this.loadedData.Auctions.AsQueryable();
             }
         }
 
@@ -218,7 +218,7 @@ namespace DotNetBay.Data.FileStorage
             {
                 this.EnsureCompleteLoaded();
 
-                return this.data.Members.AsQueryable();
+                return this.loadedData.Members.AsQueryable();
             }
         }
 
@@ -273,17 +273,17 @@ namespace DotNetBay.Data.FileStorage
 
         private void ThrowForInvalidReferences()
         {
-            foreach (var auction in this.data.Auctions)
+            foreach (var auction in this.loadedData.Auctions)
             {
                 this.ThrowForInvalidReferences(auction);
             }
 
-            foreach (var member in this.data.Members)
+            foreach (var member in this.loadedData.Members)
             {
                 this.ThrowForInvalidReferences(member);
             }
 
-            foreach (var bid in this.data.Bids)
+            foreach (var bid in this.loadedData.Bids)
             {
                 this.ThrowForInvalidReferences(bid);
             }
@@ -292,22 +292,22 @@ namespace DotNetBay.Data.FileStorage
         private void ThrowForInvalidReferences(Auction auction)
         {
             // Check References
-            this.ThrowIfReferenceNotFound(auction, x => x.Bids, this.data.Bids, r => r.Id);
-            this.ThrowIfReferenceNotFound(auction, x => x.ActiveBid, this.data.Bids, r => r.Id);
-            this.ThrowIfReferenceNotFound(auction, x => x.Seller, this.data.Members, r => r.UniqueId);
-            this.ThrowIfReferenceNotFound(auction, x => x.Winner, this.data.Members, r => r.UniqueId);
+            this.ThrowIfReferenceNotFound(auction, x => x.Bids, this.loadedData.Bids, r => r.Id);
+            this.ThrowIfReferenceNotFound(auction, x => x.ActiveBid, this.loadedData.Bids, r => r.Id);
+            this.ThrowIfReferenceNotFound(auction, x => x.Seller, this.loadedData.Members, r => r.UniqueId);
+            this.ThrowIfReferenceNotFound(auction, x => x.Winner, this.loadedData.Members, r => r.UniqueId);
         }
         
         private void ThrowForInvalidReferences(Bid bid)
         {
-            this.ThrowIfReferenceNotFound(bid, x => x.Auction, this.data.Auctions, r => r.Id);
-            this.ThrowIfReferenceNotFound(bid, x => x.Bidder, this.data.Members, r => r.UniqueId);
+            this.ThrowIfReferenceNotFound(bid, x => x.Auction, this.loadedData.Auctions, r => r.Id);
+            this.ThrowIfReferenceNotFound(bid, x => x.Bidder, this.loadedData.Members, r => r.UniqueId);
         }
 
         private void ThrowForInvalidReferences(Member member)
         {
-            this.ThrowIfReferenceNotFound(member, x => x.Auctions, this.data.Auctions, r => r.Id);
-            this.ThrowIfReferenceNotFound(member, x => x.Bids, this.data.Bids, r => r.Id);
+            this.ThrowIfReferenceNotFound(member, x => x.Auctions, this.loadedData.Auctions, r => r.Id);
+            this.ThrowIfReferenceNotFound(member, x => x.Bids, this.loadedData.Bids, r => r.Id);
         }
 
         private void ThrowIfReferenceNotFound<TRootElementType, TNavigationElementType>(
@@ -359,8 +359,8 @@ namespace DotNetBay.Data.FileStorage
 
         private void EnsureCompleteLoaded()
         {
-            if (!this.isLoaded || this.data == null || this.data.Auctions == null || this.data.Bids == null
-                || this.data.Members == null)
+            if (!this.isLoaded || this.loadedData == null || this.loadedData.Auctions == null || this.loadedData.Bids == null
+                || this.loadedData.Members == null)
             {
                 this.Load();
             }
@@ -370,15 +370,15 @@ namespace DotNetBay.Data.FileStorage
         {
             lock (this.syncRoot)
             {
-                this.BeforeLoad(this.data);
+                this.BeforeLoad(this.loadedData);
 
                 var restored = this.LoadData();
 
-                this.data = restored ?? new DataRootElement();
+                this.loadedData = restored ?? new DataRootElement();
 
                 this.isLoaded = true;
 
-                this.AfterLoad(this.data);
+                this.AfterLoad(this.loadedData);
             }
         }
 
@@ -386,11 +386,11 @@ namespace DotNetBay.Data.FileStorage
         {
             lock (this.syncRoot)
             {
-                this.BeforeSave(this.data);
+                this.BeforeSave(this.loadedData);
 
-                this.SaveData(this.data);
+                this.SaveData(this.loadedData);
 
-                this.AfterSave(this.data);
+                this.AfterSave(this.loadedData);
             }
         }
 
