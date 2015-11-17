@@ -19,6 +19,11 @@ namespace DotNetBay.Data.FileStorage
 
         public Auction Add(Auction auction)
         {
+            if (auction == null)
+            {
+                throw new ArgumentNullException("auction");
+            }
+
             if (auction.Seller == null)
             {
                 throw new ArgumentException("Its required to set a seller");
@@ -91,6 +96,11 @@ namespace DotNetBay.Data.FileStorage
 
         public Auction Update(Auction auction)
         {
+            if (auction == null)
+            {
+                throw new ArgumentNullException("auction");
+            }
+
             if (auction.Seller == null)
             {
                 throw new ArgumentException("Its required to set a seller");
@@ -123,6 +133,11 @@ namespace DotNetBay.Data.FileStorage
 
         public Bid Add(Bid bid)
         {
+            if (bid == null)
+            {
+                throw new ArgumentNullException("bid");
+            }
+
             if (bid.Bidder == null)
             {
                 throw new ArgumentException("Its required to set a bidder");
