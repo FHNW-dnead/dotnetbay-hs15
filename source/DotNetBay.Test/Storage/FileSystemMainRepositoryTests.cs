@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using DotNetBay.Data.FileStorage;
 using DotNetBay.Interfaces;
@@ -9,9 +10,10 @@ using NUnit.Framework;
 
 namespace DotNetBay.Test.Storage
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "This is a testclass")]
     public class FileSystemMainRepositoryTests : MainRepositoryTestBase
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         [ExpectedException(typeof(FileStorageException))]
         public void GivenEmptyRepo_AddAuctionAndMemberFromOtherInstance_ShouldRaiseException()
@@ -39,7 +41,7 @@ namespace DotNetBay.Test.Storage
             return new TempFileMainRepositoryFactory();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         public class TempFileMainRepositoryFactory : IRepositoryFactory
         {
             private TempDirectory tempDirectory;

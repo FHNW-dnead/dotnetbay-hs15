@@ -10,8 +10,8 @@ namespace DotNetBay.Test.Core
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "This is a testclass")]
     public class MemberServiceTest
     {
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "These are tests, thats fine!")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void WhenMemberIsNotInRepo_GetCurrentUser_AlwaysGetAMember()
         {
@@ -25,8 +25,8 @@ namespace DotNetBay.Test.Core
             Assert.IsNotNullOrEmpty(currentMember.EMail);
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "These are tests, thats fine!")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GettingCurrentMemberTwice_IsSame()
         {

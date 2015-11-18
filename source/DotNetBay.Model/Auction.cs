@@ -19,7 +19,7 @@ namespace DotNetBay.Model
         
         public string Description { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "Keep it as byte-array for compatibility reasons")]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "Keep it as byte-array for compatibility reasons")]
         public byte[] Image { get; set; }
 
         public double CurrentPrice { get; set; }

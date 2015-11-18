@@ -12,7 +12,7 @@ namespace DotNetBay.Cmd
     /// </summary>
     public static class Program
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "AuctionRunner")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "AuctionRunner", Justification = "Reviewed. This is fine here.")]
         public static void Main()
         {
             Console.WriteLine("DotNetBay Commandline");

@@ -11,11 +11,11 @@ using NUnit.Framework;
 namespace DotNetBay.Test.Core
 {
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "This is a testclass")]
-    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Execption")]
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Execption", Justification = "These are tests, thats fine!")]
     public class AuctionServiceTests
     {
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "These are tests, thats fine!")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenAProperService_SavesAValidAuction_ShouldReturnSameFromAuctionList()
         {
@@ -33,8 +33,8 @@ namespace DotNetBay.Test.Core
             Assert.AreEqual(auctionFromService, auction);
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "These are tests, thats fine!")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void WithExistingAuction_AfterPlacingABid_TheBidShouldBeAssignedToAuctionAndUser()
         {
@@ -60,8 +60,8 @@ namespace DotNetBay.Test.Core
             Assert.AreEqual(1, bidder.Bids.Count);
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "These are tests, thats fine!")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         [ExpectedException(typeof(ArgumentException))]
         public void WhenAddingAnAuction_WithUnknownMember_RaisesException()
@@ -76,8 +76,8 @@ namespace DotNetBay.Test.Core
             service.Save(auction);
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "These are tests, thats fine!")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         [ExpectedException(typeof(AuctionStateException))]
         public void PlacingABid_AuctionHasNotYetStarted_RaisesException()
@@ -95,8 +95,8 @@ namespace DotNetBay.Test.Core
             service.PlaceBid(auction, 100);
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "These are tests, thats fine!")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         [ExpectedException(typeof(AuctionStateException))]
         public void PlacingABid_AuctionHasExpired_RaisesException()

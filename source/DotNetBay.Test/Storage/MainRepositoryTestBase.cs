@@ -13,7 +13,7 @@ namespace DotNetBay.Test.Storage
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "This are tests")]
     public abstract class MainRepositoryTestBase
     {
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenAnEmptyRepo_AddOneAuction_NotEmptyAnymore()
         {
@@ -37,7 +37,7 @@ namespace DotNetBay.Test.Storage
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "ANew", Justification = "This is correct")]
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenANewRepository_CanBeSaved_WithNoIssues()
         {
@@ -48,7 +48,7 @@ namespace DotNetBay.Test.Storage
             }
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenAnEmptyRepo_AddAuctionWithSeller_AuctionAndMemberAreInRepoIndividually()
         {
@@ -84,7 +84,7 @@ namespace DotNetBay.Test.Storage
             Assert.AreEqual(1, memberFromRepo.Auctions.Count, "There should be exact one euction for this member");
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenAnEmptyRepo_AddAMemberWithAuctions_MemberAndAuctionsAreInRepoIndividually()
         {
@@ -119,7 +119,7 @@ namespace DotNetBay.Test.Storage
             Assert.AreEqual(auctionFromRepo.Seller.UniqueId, myMember.UniqueId);
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenAnExistingMember_AddAuctionWithExistingMemberAsSeller_AuctionIsAttachedToMember()
         {
@@ -157,7 +157,7 @@ namespace DotNetBay.Test.Storage
             Assert.AreEqual(myAuction.Id, allMembersFromRepo.First().Auctions.First().Id);
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenARepoWithAuctionAndMember_AddBid_BidGetsListedInAuction()
         {
@@ -197,7 +197,7 @@ namespace DotNetBay.Test.Storage
             Assert.AreEqual(bid, allAuctionsFromRepo[0].Bids.First());
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenARepoWithAuctionAndMember_AddBid_AuctionIsReferencedFromBidder()
         {
@@ -242,7 +242,7 @@ namespace DotNetBay.Test.Storage
             Assert.AreEqual(bid, bidderMember.Bids.First());
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenARepoWithAuctionAndMember_AddBid_CanBeRetrievedByTransactionId()
         {
@@ -277,7 +277,7 @@ namespace DotNetBay.Test.Storage
             Assert.AreEqual(bid, retrievedBid);
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenARepoWithMember_AddMemberAgain_ShouldNotAddTwice()
         {
@@ -305,7 +305,7 @@ namespace DotNetBay.Test.Storage
             Assert.AreEqual(1, allMembers.Count(), "There should be only one member");
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenARepoWithAuction_AddAuctionAgain_ShouldNotAddTwice()
         {
@@ -332,7 +332,7 @@ namespace DotNetBay.Test.Storage
             Assert.AreEqual(1, allAuctions.Count(), "There should be only one auction");
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         [ExpectedException]
         public void GivenEmptyRepo_AddMemberWithAuctionsFromOtherInstance_ShouldRaiseException()
@@ -359,7 +359,7 @@ namespace DotNetBay.Test.Storage
             }
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void GivenAnEmptyRepo_AddAuctionAndMember_ReferencesShouldBeEqual()
         {
@@ -391,7 +391,7 @@ namespace DotNetBay.Test.Storage
             Assert.AreEqual(allMembersFromRepo.FirstOrDefault().Auctions.FirstOrDefault(), allAuctionFromRepo.FirstOrDefault());
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void AuctionWithImage_IsSavedInRepo_CanBeRetrievedAfterwards()
         {
@@ -417,7 +417,7 @@ namespace DotNetBay.Test.Storage
             Assert.AreEqual(myImage, imageFromRepo);
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         [TestCase]
         public void AuctionWithImage_IsUpdatedWithNoImage_ImageIsGone()
         {
