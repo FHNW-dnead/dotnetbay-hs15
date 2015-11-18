@@ -13,7 +13,7 @@ namespace DotNetBay.Test.Storage
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(FileStorageException))]
         public void GivenEmptyRepo_AddAuctionAndMemberFromOtherInstance_ShouldRaiseException()
         {
             var myAuction = CreateAnAuction();

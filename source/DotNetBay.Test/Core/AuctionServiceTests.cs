@@ -79,7 +79,7 @@ namespace DotNetBay.Test.Core
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(AuctionStateException))]
         public void PlacingABid_AuctionHasNotYetStarted_RaisesException()
         {
             var repo = new InMemoryMainRepository();
@@ -98,7 +98,7 @@ namespace DotNetBay.Test.Core
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(AuctionStateException))]
         public void PlacingABid_AuctionHasExpired_RaisesException()
         {
             var repo = new InMemoryMainRepository();

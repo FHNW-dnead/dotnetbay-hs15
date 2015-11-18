@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
+using DotNetBay.Core;
 using DotNetBay.Core.Execution;
 using DotNetBay.Data.FileStorage;
 using DotNetBay.Model;
@@ -108,7 +109,7 @@ namespace DotNetBay.Test.Core
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores")]
         [TestCase]
-        [ExpectedException(typeof(ApplicationException))]
+        [ExpectedException(typeof(AuctionStateException))]
         public void Auction_GetsOlderButHigherBid_FailsWithException()
         {
             var repo = new InMemoryMainRepository();
