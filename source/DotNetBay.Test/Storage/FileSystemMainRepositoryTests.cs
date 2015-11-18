@@ -18,21 +18,21 @@ namespace DotNetBay.Test.Storage
         [ExpectedException(typeof(FileStorageException))]
         public void GivenEmptyRepo_AddAuctionAndMemberFromOtherInstance_ShouldRaiseException()
         {
-            var myAuction = CreateAnAuction();
-            var myMember = CreateAMember();
+            var createdAuction = CreateAnAuction();
+            var createdMember = CreateAMember();
 
             // References
-            myAuction.Seller = myMember;
-            myMember.Auctions = new List<Auction>(new[] { myAuction });
+            createdAuction.Seller = createdMember;
+            createdMember.Auctions = new List<Auction>(new[] { createdAuction });
 
             using (var factory = this.CreateFactory())
             {
                 var initRepo = factory.CreateMainRepository();
-                initRepo.Add(myAuction);
+                initRepo.Add(createdAuction);
                 initRepo.SaveChanges();
 
                 var testRepo = factory.CreateMainRepository();
-                testRepo.Add(myAuction);
+                testRepo.Add(createdAuction);
             }
         }
 

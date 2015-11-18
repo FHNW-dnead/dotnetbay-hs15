@@ -11,7 +11,7 @@ namespace DotNetBay.Data.FileStorage
     {
         private readonly object syncRoot = new object();
 
-        private bool isLoaded;
+        private bool dataHasBeenLoaded;
 
         private DataRootElement loadedData;
 
@@ -271,45 +271,6 @@ namespace DotNetBay.Data.FileStorage
 
         #region Reference Checks
 
-        private void ThrowForInvalidReferences()
-        {
-            foreach (var auction in this.loadedData.Auctions)
-            {
-                this.ThrowForInvalidReferences(auction);
-            }
-
-            foreach (var member in this.loadedData.Members)
-            {
-                this.ThrowForInvalidReferences(member);
-            }
-
-            foreach (var bid in this.loadedData.Bids)
-            {
-                this.ThrowForInvalidReferences(bid);
-            }
-        }
-
-        private void ThrowForInvalidReferences(Auction auction)
-        {
-            // Check References
-            ThrowIfReferenceNotFound(auction, x => x.Bids, this.loadedData.Bids, r => r.Id);
-            ThrowIfReferenceNotFound(auction, x => x.ActiveBid, this.loadedData.Bids, r => r.Id);
-            ThrowIfReferenceNotFound(auction, x => x.Seller, this.loadedData.Members, r => r.UniqueId);
-            ThrowIfReferenceNotFound(auction, x => x.Winner, this.loadedData.Members, r => r.UniqueId);
-        }
-        
-        private void ThrowForInvalidReferences(Bid bid)
-        {
-            ThrowIfReferenceNotFound(bid, x => x.Auction, this.loadedData.Auctions, r => r.Id);
-            ThrowIfReferenceNotFound(bid, x => x.Bidder, this.loadedData.Members, r => r.UniqueId);
-        }
-
-        private void ThrowForInvalidReferences(Member member)
-        {
-            ThrowIfReferenceNotFound(member, x => x.Auctions, this.loadedData.Auctions, r => r.Id);
-            ThrowIfReferenceNotFound(member, x => x.Bids, this.loadedData.Bids, r => r.Id);
-        }
-
         private static void ThrowIfReferenceNotFound<TRootElementType, TNavigationElementType>(
             TRootElementType obj,
             Func<TRootElementType, IEnumerable<TNavigationElementType>> navigationAccessor,
@@ -353,13 +314,52 @@ namespace DotNetBay.Data.FileStorage
             }
         }
 
+        private void ThrowForInvalidReferences()
+        {
+            foreach (var auction in this.loadedData.Auctions)
+            {
+                this.ThrowForInvalidReferences(auction);
+            }
+
+            foreach (var member in this.loadedData.Members)
+            {
+                this.ThrowForInvalidReferences(member);
+            }
+
+            foreach (var bid in this.loadedData.Bids)
+            {
+                this.ThrowForInvalidReferences(bid);
+            }
+        }
+
+        private void ThrowForInvalidReferences(Auction auction)
+        {
+            // Check References
+            ThrowIfReferenceNotFound(auction, x => x.Bids, this.loadedData.Bids, r => r.Id);
+            ThrowIfReferenceNotFound(auction, x => x.ActiveBid, this.loadedData.Bids, r => r.Id);
+            ThrowIfReferenceNotFound(auction, x => x.Seller, this.loadedData.Members, r => r.UniqueId);
+            ThrowIfReferenceNotFound(auction, x => x.Winner, this.loadedData.Members, r => r.UniqueId);
+        }
+        
+        private void ThrowForInvalidReferences(Bid bid)
+        {
+            ThrowIfReferenceNotFound(bid, x => x.Auction, this.loadedData.Auctions, r => r.Id);
+            ThrowIfReferenceNotFound(bid, x => x.Bidder, this.loadedData.Members, r => r.UniqueId);
+        }
+
+        private void ThrowForInvalidReferences(Member member)
+        {
+            ThrowIfReferenceNotFound(member, x => x.Auctions, this.loadedData.Auctions, r => r.Id);
+            ThrowIfReferenceNotFound(member, x => x.Bids, this.loadedData.Bids, r => r.Id);
+        }
+
         #endregion
 
         #region Internals
 
         private void EnsureCompleteLoaded()
         {
-            if (!this.isLoaded || this.loadedData == null || this.loadedData.Auctions == null || this.loadedData.Bids == null
+            if (!this.dataHasBeenLoaded || this.loadedData == null || this.loadedData.Auctions == null || this.loadedData.Bids == null
                 || this.loadedData.Members == null)
             {
                 this.Load();
@@ -376,7 +376,7 @@ namespace DotNetBay.Data.FileStorage
 
                 this.loadedData = restored ?? new DataRootElement();
 
-                this.isLoaded = true;
+                this.dataHasBeenLoaded = true;
 
                 this.AfterLoad(this.loadedData);
             }
