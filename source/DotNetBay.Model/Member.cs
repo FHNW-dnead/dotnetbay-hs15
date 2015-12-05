@@ -23,6 +23,6 @@ namespace DotNetBay.Model
         public ICollection<Auction> Auctions { get; set; }
 
         [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "Cannot reomve setter, because needs to be accessible by ORM")]
-        public ICollection<Bid> Bids { get; set; } 
+        public ICollection<Bid> Bids { get; set; }
     }
 }

@@ -297,7 +297,8 @@ namespace DotNetBay.Data.FileStorage
             TRootElementType obj,
             Func<TRootElementType, TNavigationElementType> navigationAccessor,
             IEnumerable<TNavigationElementType> validInstances,
-            Func<TNavigationElementType, object> identificationAccessor) where TNavigationElementType : class
+            Func<TNavigationElementType, object> identificationAccessor)
+            where TNavigationElementType : class
         {
             var referencedElement = navigationAccessor(obj);
 
@@ -340,7 +341,7 @@ namespace DotNetBay.Data.FileStorage
             ThrowIfReferenceNotFound(auction, x => x.Seller, this.loadedData.Members, r => r.UniqueId);
             ThrowIfReferenceNotFound(auction, x => x.Winner, this.loadedData.Members, r => r.UniqueId);
         }
-        
+
         private void ThrowForInvalidReferences(Bid bid)
         {
             ThrowIfReferenceNotFound(bid, x => x.Auction, this.loadedData.Auctions, r => r.Id);

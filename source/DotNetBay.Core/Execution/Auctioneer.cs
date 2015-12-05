@@ -20,7 +20,7 @@ namespace DotNetBay.Core.Execution
 
         public event EventHandler<ProcessedBidEventArgs> BidAccepted;
 
-        public event EventHandler<AuctionEventArgs> AuctionStarted; 
+        public event EventHandler<AuctionEventArgs> AuctionStarted;
 
         public event EventHandler<AuctionEventArgs> AuctionEnded;
 
@@ -99,7 +99,7 @@ namespace DotNetBay.Core.Execution
         {
             // Process all auctions with open bids
             var openAuctions = this.repository.GetAuctions().Where(a => a.Bids.Any(b => b.Accepted == null));
-            
+
             var processedBids = false;
 
             foreach (var auction in openAuctions)

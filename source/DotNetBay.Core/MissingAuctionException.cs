@@ -10,15 +10,18 @@ namespace DotNetBay.Core
         {
         }
 
-        public MissingAuctionException(string message) : base(message)
+        public MissingAuctionException(string message)
+            : base(message)
         {
         }
 
-        public MissingAuctionException(string message, Exception innerException) : base(message, innerException)
+        public MissingAuctionException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
 
-        protected MissingAuctionException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected MissingAuctionException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

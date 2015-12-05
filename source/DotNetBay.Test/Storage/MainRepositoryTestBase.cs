@@ -152,7 +152,7 @@ namespace DotNetBay.Test.Storage
 
             Assert.IsNotNull(allMembersFromRepo, "memberForRepo != null");
             Assert.IsNotNull(allMembersFromRepo.First().Auctions, "memberForRepo.Auctions != null");
-            
+
             Assert.AreEqual(1, allMembersFromRepo.First().Auctions.Count(), "There should be a auction attached to the member");
             Assert.AreEqual(createdAuction.Id, allMembersFromRepo.First().Auctions.First().Id);
         }
@@ -226,7 +226,7 @@ namespace DotNetBay.Test.Storage
                 testRepo.Add(theBidder);
                 testRepo.Add(bid);
                 testRepo.SaveChanges();
-                
+
                 allMembersFromRepo = testRepo.GetMembers().ToList();
             }
 
@@ -344,7 +344,7 @@ namespace DotNetBay.Test.Storage
             // References
             createdAuction.Seller = createdMember;
             createdMember.Auctions = new List<Auction>(new[] { createdAuction });
-            
+
             otherMember.Auctions = new List<Auction>(new[] { createdAuction });
 
             using (var factory = this.CreateFactory())

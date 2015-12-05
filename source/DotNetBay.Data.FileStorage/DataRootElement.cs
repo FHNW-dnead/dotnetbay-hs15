@@ -11,7 +11,7 @@ namespace DotNetBay.Data.FileStorage
             this.Bids = new List<Bid>();
             this.Members = new List<Member>();
         }
-        
+
         public List<Auction> Auctions { get; set; }
 
         public List<Bid> Bids { get; set; }

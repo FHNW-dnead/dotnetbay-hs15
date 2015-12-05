@@ -16,7 +16,7 @@ namespace DotNetBay.Model
         public double StartPrice { get; set; }
 
         public string Title { get; set; }
-        
+
         public string Description { get; set; }
 
         [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "Keep it as byte-array for compatibility reasons")]

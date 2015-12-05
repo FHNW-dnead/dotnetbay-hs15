@@ -41,6 +41,7 @@ namespace DotNetBay.Test.Storage
             return new TempFileMainRepositoryFactory();
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible", Justification = "These are tests, thats fine!")]
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "These are tests, thats fine!")]
         public class TempFileMainRepositoryFactory : IRepositoryFactory
         {

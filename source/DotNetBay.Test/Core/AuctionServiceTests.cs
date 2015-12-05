@@ -110,7 +110,7 @@ namespace DotNetBay.Test.Core
 
             auction.StartDateTimeUtc = DateTime.UtcNow.AddDays(-2);
             auction.EndDateTimeUtc = DateTime.UtcNow.AddDays(-2);
-            
+
             repo.Add(auction);
 
             service.PlaceBid(auction, 100);

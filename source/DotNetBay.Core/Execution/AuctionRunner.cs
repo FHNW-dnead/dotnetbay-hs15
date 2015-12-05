@@ -10,7 +10,7 @@ namespace DotNetBay.Core.Execution
         private readonly TimeSpan checkInterval;
 
         private readonly Auctioneer auctioneer;
-        
+
         private Timer timer;
 
         public AuctionRunner(IMainRepository repository)

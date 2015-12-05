@@ -23,7 +23,7 @@ namespace DotNetBay.Test.Core
             var auctioneer = new Auctioneer(repo);
 
             var auction = CreateAndStoreAuction(repo, DateTime.UtcNow, DateTime.UtcNow.AddHours(1));
-            
+
             auctioneer.DoAllWork();
 
             var bidder = new Member() { DisplayName = "Bidder1", UniqueId = Guid.NewGuid().ToString() };
@@ -47,7 +47,7 @@ namespace DotNetBay.Test.Core
 
             var auction = CreateAndStoreAuction(repo, DateTime.UtcNow, DateTime.UtcNow.AddHours(1));
             AddInitialBidToAuction(repo, auction);
-            
+
             auctioneer.DoAllWork();
 
             var bidder2 = new Member() { DisplayName = "Bidder2", UniqueId = Guid.NewGuid().ToString() };
@@ -340,7 +340,7 @@ namespace DotNetBay.Test.Core
             var bidder2 = new Member() { DisplayName = "Bidder2", UniqueId = Guid.NewGuid().ToString() };
             repo.Add(bidder2);
             repo.Add(new Bid() { ReceivedOnUtc = DateTime.UtcNow, Bidder = bidder2, Amount = 51, Auction = auction });
-            
+
             auctioneer.DoAllWork();
 
             Assert.NotNull(raisedArgs);

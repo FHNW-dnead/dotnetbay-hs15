@@ -12,7 +12,7 @@ namespace DotNetBay.Test.Storage
             this.fullPath = Path.GetTempFileName();
         }
 
-        public string FullPath 
+        public string FullPath
         {
             get { return this.fullPath; }
         }

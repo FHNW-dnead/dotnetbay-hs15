@@ -34,15 +34,15 @@ namespace DotNetBay.Core
             {
                 var updatedAuction = this.mainRepository.Update(auction);
                 this.mainRepository.SaveChanges();
-                
+
                 return updatedAuction;
             }
 
             this.ValidateNewAuctionAndThrowOnError(auction);
-            
+
             var newAuction = this.mainRepository.Add(auction);
             this.mainRepository.SaveChanges();
-            
+
             return newAuction;
         }
 

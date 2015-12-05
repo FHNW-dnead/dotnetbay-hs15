@@ -20,15 +20,15 @@ namespace DotNetBay.Core
         public Member GetCurrentMember()
         {
             var uniqueId = string.Format(CultureInfo.CurrentCulture, "{0}@{1}.local", Environment.UserName, Environment.UserDomainName);
-            
+
             var member = this.repository.GetMembers().FirstOrDefault(m => m.UniqueId == uniqueId);
 
             if (member == null)
             {
                 member = new Member
                     {
-                        UniqueId = uniqueId, 
-                        DisplayName = Environment.UserName, 
+                        UniqueId = uniqueId,
+                        DisplayName = Environment.UserName,
                         EMail = string.Format(CultureInfo.CurrentCulture, "{0}@{1}.local", Environment.UserName, Environment.UserDomainName)
                     };
 
@@ -69,7 +69,7 @@ namespace DotNetBay.Core
             {
                 throw new ArgumentException("Cannot save an unknown member");
             }
-            
+
             foundMember.DisplayName = member.DisplayName;
             foundMember.EMail = member.DisplayName;
 

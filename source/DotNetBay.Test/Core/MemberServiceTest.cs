@@ -35,7 +35,7 @@ namespace DotNetBay.Test.Core
 
             var currentMember1 = service.GetCurrentMember();
             var currentMember2 = service.GetCurrentMember();
-            
+
             Assert.AreEqual(currentMember1, currentMember2);
         }
     }
