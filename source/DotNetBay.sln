@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionFiles", "_Solution
 	ProjectSection(SolutionItems) = preProject
 		DotNetBay.ruleset = DotNetBay.ruleset
 		DotNetBay.sln.DotSettings = DotNetBay.sln.DotSettings
-		Settings.StyleCop = Settings.StyleCop
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBay.Core", "DotNetBay.Core\DotNetBay.Core.csproj", "{9EF46B21-B552-4CC6-A4C0-E81091A4064B}"
