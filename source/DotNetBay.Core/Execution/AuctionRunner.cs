@@ -44,6 +44,11 @@ namespace DotNetBay.Core.Execution
             this.timer.Change(Timeout.Infinite, Timeout.Infinite);
         }
 
+        public void RunOnce()
+        {
+            this.auctioneer.DoAllWork();
+        }
+
         public void Dispose()
         {
             this.Dispose(true);

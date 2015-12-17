@@ -8,5 +8,7 @@
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Stop", Justification = "No issue here, because only tergating C#")]
         void Stop();
+
+        void RunOnce();
     }
 }
